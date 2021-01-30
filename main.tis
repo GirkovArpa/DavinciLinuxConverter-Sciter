@@ -1,0 +1,68 @@
+const DEBUGGING = false;
+DEBUGGING && view.connectToInspector && view.connectToInspector(rootElement, inspectorIpAddress);
+
+var FILES = [];
+
+$(#open) << event click {
+  const filter = "All Files (*.*)|*.*";
+  const result = view.selectFile(#open-multiple, filter);
+  const filenames = [];
+  if (typeof result == #string) filenames.push(result);
+  if (typeof result == #array) {
+    for (var file in result) {
+      filenames.push(file);
+    }
+  }
+  for (var (index, filename) in filenames) {
+    filenames[index] = filename.replace("file://", "").urlUnescape();
+  }
+  FILES = [];
+  for (var filename in filenames) {
+    FILES.push(filename);
+  }
+  for (var filename in filenames) {
+    const displayName = filename.slice(filename.lastIndexOf("/") + 1);
+    $(body).$append(<div .queue-item>{displayName}</div>);
+  }
+}
+
+$(#convert) << event click {
+  $(#spinner).style.set { opacity: 1; };
+  self.timer(1s, function() {
+    $(#spinner).style.set { opacity: 0; };
+  });
+  for (var (index, FILE) in FILES) {
+    const args = [
+      "-i",
+      FILE,
+      "-c:v",
+      "dnxhd",
+      "-profile:v",
+      "dnxhr_hq",
+      "-pix_fmt",
+      "yuv422p",
+      "-c:a",
+      "pcm_s16le",
+      FILE + ".mov"
+    ];
+    const ffmpeg = System.Process.exec("ffmpeg", args, #detached);
+    ffmpeg.on("stdout", function(data) {
+      stdout.println(data);
+    });
+    ffmpeg.on("stderr", function(data) {
+      stderr.println(data);
+    });
+    ffmpeg.on("stdin", function(data) {
+      stdout.println(data);
+    });
+
+    $$(.queue-item)[0].remove();
+  }
+  FILES = [];
+}
+
+$(a) << event click {
+  const href = this.attributes["href"];
+  Sciter.launch(href);
+  return true;
+} 

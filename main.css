@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  background: #2B3E50;
+  padding-bottom: 8dip;
+}
+
+#header {
+  height: 48dip;
+  background: #4E5D6C;
+  vertical-align: middle;
+  font-size: 20dip;
+  font-weight: bold;
+  color: #EBEBEB;
+  padding-left: 18dip;
+  margin-bottom: 32dip;
+  font-family: Lato;
+  width: *;
+}
+
+#centerpiece {
+  margin-top: 0;
+  margin-bottom: 32dip;
+  background: #4E5D6C;
+  color: #EBEBEB;
+  margin-left: 40dip;
+  margin-right: 40dip;
+  width: *;
+  height: max-content;
+  padding-top: 32dip;
+  padding-bottom: 32dip;
+  padding-left: 32dip;
+  padding-right: 32dip;
+  flow: vertical;
+}
+
+#ADD-FILES {
+  font-size: 72dip;
+  font-family: Lato Light;
+  font-weight: normal;
+}
+
+#main-text {
+  font-family: Lato Light;
+  font-weight: normal;
+  font-size: 20dip;
+  color: #EBEBEB;
+}
+
+#legal {
+  font-family: Lato Light;
+  font-weight: normal;
+  font-size: 12dip;
+  color: #EBEBEB;
+  margin-top: 8dip;
+  margin-bottom: 16dip;
+}
+
+a {
+  color: #DF691A;
+}
+
+hr {
+  border-color: #465461;
+  margin-top: 24dip;
+  margin-bottom: 16dip;
+}
+
+button {
+  style-set: std-button-base;
+  background-color: #DF691A;
+  color: white;
+  height: 47dip;
+  margin-top: 8dip;
+  margin-bottom: 8dip;
+  text-align: center;
+  font-family: Lato;
+  font-size: 20dip;
+  font-weight: bold;
+  cursor: pointer;
+  transition: outline-color .15s linear, background-color .15s linear;
+  width: *;
+  /* https://stackoverflow.com/a/8258645 */
+  line-height: 47dip;
+}
+
+button:hover, button:focus {
+  background-color: #BD5916;
+}
+
+button:active, button:focus {
+  outline-color: #996E54;
+  outline-width: 3dip;
+  outline-style: solid;
+}
+
+button:active {
+  background-color: #B15315;
+}
+
+#spinner {
+  animation: spinner-border .75s linear infinite;
+  margin-top: 16dip;
+  opacity: 0;
+}
+
+@keyframes spinner-border {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.queue-item {
+  height: 47dip;
+  background-color: #5BC0DE;
+  color: white;
+  margin-left: 40dip;
+  margin-right: 40dip;
+  margin-bottom: 16dip;
+  margin-top: 16dip;
+  padding-left: 12dip;
+  vertical-align: middle;
+  font-family: Lato;
+  font-size: 16dip;
+  width: *;
+}

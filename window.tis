@@ -1,0 +1,8 @@
+function self.ready() {
+  const w = 800dip;
+  const h = 600dip;
+  const (sw, sh) = view.screenBox(#frame, #dimension);
+  view.move((sw / 2) - (w / 2), (sh / 2) - (h / 2), w, h, false);
+  view.windowResizable = true;
+}
+
